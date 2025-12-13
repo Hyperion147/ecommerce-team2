@@ -1,35 +1,94 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage.jsx';
+import MenPage from './pages/MenPage.jsx';
+import WomenPage from './pages/WomenPage.jsx';
+import ShopPage from './pages/ShopPage.jsx';
+import ContactPage from './pages/ContactPage.jsx';
+import AboutPage from './pages/AboutPage.jsx';
+import ProductDetailsPage from './pages/ProductDetailsPage.jsx';
+import useCart from './hooks/useCart.jsx';
+import './styles/main.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { cartCount, cartItems, addToCart, removeFromCart, clearCart } = useCart();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route 
+            path="/" 
+            element={<HomePage 
+              cartCount={cartCount} 
+              cartItems={cartItems}
+              onAddToCart={addToCart} 
+              onRemoveFromCart={removeFromCart}
+              onClearCart={clearCart}
+            />} 
+          />
+          <Route 
+            path="/shop" 
+            element={<ShopPage 
+              cartCount={cartCount} 
+              cartItems={cartItems}
+              onAddToCart={addToCart} 
+              onRemoveFromCart={removeFromCart}
+              onClearCart={clearCart}
+            />} 
+          />
+          <Route 
+            path="/men" 
+            element={<MenPage 
+              cartCount={cartCount} 
+              cartItems={cartItems}
+              onAddToCart={addToCart} 
+              onRemoveFromCart={removeFromCart}
+              onClearCart={clearCart}
+            />} 
+          />
+          <Route 
+            path="/women" 
+            element={<WomenPage 
+              cartCount={cartCount} 
+              cartItems={cartItems}
+              onAddToCart={addToCart} 
+              onRemoveFromCart={removeFromCart}
+              onClearCart={clearCart}
+            />} 
+          />
+          <Route 
+            path="/about" 
+            element={<AboutPage 
+              cartCount={cartCount} 
+              cartItems={cartItems}
+              onRemoveFromCart={removeFromCart}
+              onClearCart={clearCart}
+            />} 
+          />
+          <Route 
+            path="/contact" 
+            element={<ContactPage 
+              cartCount={cartCount} 
+              cartItems={cartItems}
+              onRemoveFromCart={removeFromCart}
+              onClearCart={clearCart}
+            />} 
+          />
+          <Route 
+            path="/product/:id" 
+            element={<ProductDetailsPage 
+              cartCount={cartCount} 
+              cartItems={cartItems}
+              onAddToCart={addToCart} 
+              onRemoveFromCart={removeFromCart}
+              onClearCart={clearCart}
+            />} 
+          />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
