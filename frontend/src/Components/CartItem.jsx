@@ -1,4 +1,4 @@
-import products from "../data/products";
+import products from "../Data/products.json";
 
 export default function CartItem({ productid, ondelete }) {
   const p = products.find((item) => item.id == productid);

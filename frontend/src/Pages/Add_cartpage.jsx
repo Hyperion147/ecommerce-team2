@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import CartItem from "../Components/CartItem";
 import OrderSummary from "../Components/OrderSummary";
 import { useState, useEffect } from "react";
-import products from "../data/products";
+import products from "../Data/products.json";
 
 export default function Add_cartpage() {
   const navigate = useNavigate();

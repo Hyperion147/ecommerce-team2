@@ -1,25 +1,56 @@
 // component of detailpage - Aman 
 import { useState } from "react";
-  import products from "../data/products";
+import products from "../Data/products.json";
 import { useNavigate } from "react-router-dom";
 
-
-export function AboutHero() {
-  const navegate = useNavigate()
+export function AboutHero({ productId }) {
+  const navigate = useNavigate()
   
   const handleClick = () => {
-    navegate(`/cart/${p.id}`)
+    navigate(`/cart/${p.id}`)
   }
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   const [qty, setQty] = useState(1);
 
-    const P_id = 15;
-    const p = products.find((item) => item.id == P_id)
-    console.log(p.id)
+  // Use productId from props or default to 15
+  const P_id = productId ? parseInt(productId) : 15;
+  const p = products.find((item) => item.id == P_id);
+  
+  // If product not found, show error
+  if (!p) {
+    return (
+      <div className="max-w-6xl w-full text-center py-12">
+        <h1 className="text-4xl font-bold mb-4">Product Not Found</h1>
+        <p className="text-gray-400 mb-6">The product you're looking for doesn't exist.</p>
+        <button
+          onClick={handleBack}
+          className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-semibold"
+        >
+          Go Back
+        </button>
+      </div>
+    );
+  }
 
 
   return (
-    <div className="max-w-6xl w-full flex flex-col md:flex-row items-start gap-14 py-12">
+    <div className="max-w-6xl w-full">
+      {/* Back Button */}
+      <button
+        onClick={handleBack}
+        className="flex items-center gap-2 bg-neutral-800 rounded-xl px-4 py-2 hover:bg-neutral-700 mb-6 transition-colors"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+        Back
+      </button>
+
+      <div className="flex flex-col md:flex-row items-start gap-14 py-12">
 
       <div className="w-full md:w-1/2 md:-ml-10">
         <div className="w-full h-[420px] md:h-[520px] overflow-hidden rounded-2xl ">
@@ -83,6 +114,7 @@ export function AboutHero() {
         </p>
 
       </div>
+    </div>
     </div>
   );
 }
