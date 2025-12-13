@@ -52,7 +52,7 @@ export default function Navbar() {
           {/* Cart Icon */}
           <div className="hidden md:flex items-center">
             <button
-              onClick={() => navigate("/cart/0")}
+              onClick={() => navigate("/cart")}
               className="relative p-2 hover:text-blue-500 transition-colors"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,7 +111,7 @@ export default function Navbar() {
               </button>
               <button
                 onClick={() => {
-                  navigate("/cart/0");
+                  navigate("/cart");
                   setIsMenuOpen(false);
                 }}
                 className="text-left hover:text-blue-500 transition-colors flex items-center gap-2"

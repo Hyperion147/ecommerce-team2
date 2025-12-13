@@ -7,10 +7,10 @@ export default function Footer() {
     <footer className="bg-neutral-900 text-white py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           
           {/* Brand Section */}
-          <div className="md:col-span-1">
+          <div>
             <h3 className="text-2xl font-bold mb-4">
               Urban<span className="text-blue-500">Threads</span>
             </h3>
@@ -47,37 +47,17 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><button onClick={() => navigate("/")} className="text-gray-400 hover:text-white transition-colors">Home</button></li>
-              <li><button onClick={() => navigate("/products")} className="text-gray-400 hover:text-white transition-colors">Products</button></li>
-              <li><button onClick={() => navigate("/about")} className="text-gray-400 hover:text-white transition-colors">About Us</button></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-            </ul>
-          </div>
-
-          {/* Categories */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Categories</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Hoodies</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Jackets</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">T-Shirts</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Jeans</a></li>
-            </ul>
-          </div>
-
-          {/* Customer Service */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Customer Service</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Shipping Info</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Returns</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Size Guide</a></li>
-            </ul>
+          {/* Quick Links - Centered */}
+          <div className="flex justify-center md:justify-start">
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li><button onClick={() => navigate("/")} className="text-gray-400 hover:text-white transition-colors">Home</button></li>
+                <li><button onClick={() => navigate("/products")} className="text-gray-400 hover:text-white transition-colors">Products</button></li>
+                <li><button onClick={() => navigate("/about")} className="text-gray-400 hover:text-white transition-colors">About Us</button></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 

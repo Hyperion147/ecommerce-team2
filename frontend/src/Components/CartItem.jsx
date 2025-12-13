@@ -1,31 +1,71 @@
+import { useState, useEffect } from "react";
 import products from "../Data/products.json";
 
-export default function CartItem({ productid, ondelete }) {
+export default function CartItem({ productid, ondelete, onQuantityChange, initialQuantity = 1 }) {
   const p = products.find((item) => item.id == productid);
+  const [quantity, setQuantity] = useState(initialQuantity);
+
+  // Sync quantity with initialQuantity prop
+  useEffect(() => {
+    setQuantity(initialQuantity);
+  }, [initialQuantity]);
+
+  // If product not found, don't render anything
+  if (!p) {
+    return null;
+  }
+
+  const handleIncrement = () => {
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    if (onQuantityChange) {
+      onQuantityChange(productid, newQuantity);
+    }
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      if (onQuantityChange) {
+        onQuantityChange(productid, newQuantity);
+      }
+    }
+  };
 
   return (
     <div className="bg-neutral-900 text-white flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl w-full relative">
       
       <img
         src={p.image}
+        alt={p.name}
         className="w-full sm:w-32 h-48 sm:h-32 object-cover rounded-xl"
       />
 
       <div className="flex flex-col justify-between flex-1 gap-3">
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold">{p.tital}</h2>
+          <h2 className="text-lg sm:text-xl font-semibold">{p.name}</h2>
           <p className="text-sm text-gray-300">
             Size: {p.size} • Color: {p.color}
           </p>
-          <p className="text-lg font-semibold mt-1">₹{p.price}</p>
+          <p className="text-lg font-semibold mt-1">
+            ₹{p.price} {quantity > 1 && <span className="text-sm text-gray-400">x {quantity} = ₹{p.price * quantity}</span>}
+          </p>
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="bg-neutral-800 rounded-xl px-4 py-2 text-lg font-bold hover:bg-neutral-700">
+          <button 
+            onClick={handleDecrement}
+            className="bg-neutral-800 rounded-xl px-4 py-2 text-lg font-bold hover:bg-neutral-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={quantity <= 1}
+          >
             -
           </button>
-          <span className="text-lg font-semibold">1</span>
-          <button className="bg-neutral-800 rounded-xl px-4 py-2 text-lg font-bold hover:bg-neutral-700">
+          <span className="text-lg font-semibold min-w-[2rem] text-center">{quantity}</span>
+          <button 
+            onClick={handleIncrement}
+            className="bg-neutral-800 rounded-xl px-4 py-2 text-lg font-bold hover:bg-neutral-700 transition-colors"
+          >
             +
           </button>
         </div>
