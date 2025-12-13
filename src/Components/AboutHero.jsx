@@ -13,7 +13,7 @@ export function AboutHero() {
 
   const [qty, setQty] = useState(1);
 
-    const P_id = 10;
+    const P_id = 15;
     const p = products.find((item) => item.id == P_id)
     console.log(p.id)
 

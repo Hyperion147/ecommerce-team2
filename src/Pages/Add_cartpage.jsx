@@ -53,22 +53,26 @@ export default function Add_cartpage() {
   const grandTotal = total + tax;
 
   return (
-    <div className="w-full min-h-screen bg-black text-white px-10 py-10">
+    <div className="w-full min-h-screen bg-black text-white px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-10">
       <button
         onClick={handleBack}
-        className="flex items-center justify-center bg-neutral-800 rounded-xl px-4 py-2 text-lg font-bold hover:bg-neutral-700 m-5"
+        className="flex items-center justify-center bg-neutral-800 rounded-xl px-4 py-2 text-base sm:text-lg font-bold hover:bg-neutral-700 mb-6"
       >
         Back
       </button>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 w-full">
-        <div className="col-span-2 flex flex-col gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 w-full">
+        <div className="lg:col-span-2 flex flex-col gap-6 sm:gap-8">
           {preValue.map((value, i) => (
-            <CartItem key={i} productid={value} ondelete={() => handleDelete(value)} />
+            <CartItem
+              key={i}
+              productid={value}
+              ondelete={() => handleDelete(value)}
+            />
           ))}
         </div>
 
-        <div className="self-start w-full max-w-sm">
+        <div className="w-full lg:max-w-sm lg:self-start">
           <OrderSummary total={total} tax={tax} grandTotal={grandTotal} />
         </div>
       </div>
